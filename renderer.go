@@ -94,6 +94,7 @@ func (r *Renderer) enter(w util.BufWriter, n *Node, src []byte) (ast.WalkStatus,
 	if !img {
 		r.hasDest.Store(n, struct{}{})
 		_, _ = w.WriteString(`<a href="`)
+		dest = append([]byte("/"), dest...)
 		_, _ = w.Write(util.URLEscape(dest, true /* resolve references */))
 		_, _ = w.WriteString(`">`)
 		return ast.WalkContinue, nil
